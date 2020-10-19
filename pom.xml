@@ -64,8 +64,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.5</source>
-                    <target>1.5</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
         </plugins>
@@ -98,12 +98,47 @@
         <!-- JSF API: Add here as provided dependency and then add it
              on jetty-maven-plugin as compile/runtime dependency.
              The same goes for other JSF libraries. -->
-        <dependency>
-            <groupId>org.apache.myfaces.core</groupId>
-            <artifactId>myfaces-api</artifactId>
-            <version>${jsf-myfaces.version}</version>
-            <scope>provided</scope>
-        </dependency>
+<!--         <dependency> -->
+<!--             <groupId>org.apache.myfaces.core</groupId> -->
+<!--             <artifactId>myfaces-api</artifactId> -->
+<!--             <version>${jsf-myfaces.version}</version> -->
+<!--             <scope>provided</scope> -->
+<!--         </dependency> -->
+        
+        
+                <dependency>
+                    <groupId>org.apache.myfaces.core</groupId>
+                    <artifactId>myfaces-api</artifactId>
+                    <version>${jsf-myfaces.version}</version>
+                    <scope>compile</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.myfaces.core</groupId>
+                    <artifactId>myfaces-impl</artifactId>
+                    <version>${jsf-myfaces.version}</version>
+                    <scope>runtime</scope>
+                </dependency>
+           
+
+
+		<!-- cdi -->
+		<dependency>
+			<groupId>org.jboss.weld.servlet</groupId>
+			<artifactId>weld-servlet-shaded</artifactId>
+			<version>3.1.4.Final</version>
+		</dependency>
+	
+		<dependency>
+			<groupId>com.googlecode.owasp-java-html-sanitizer</groupId>
+			<artifactId>owasp-java-html-sanitizer</artifactId>
+			<version>20191001.1</version>
+		</dependency>
+	
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>8.0</version>
+		</dependency>
 
         <dependency>
             <groupId>javax.servlet</groupId>

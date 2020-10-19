@@ -21,53 +21,63 @@ package fr.remorques;
 
 import java.io.Serializable;
 
-import javax.annotation.ManagedBean;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 
-//import javax.faces.bean.ManagedBean;
-//import javax.faces.bean.RequestScoped;
-
-
+import fr.remorques.bean.User;
 
 /**
  * A typical simple backing bean, that is backed to <code>helloWorld.xhtml</code>
  */
-//@Named(value  = "helloWorld")
-@Named(value = "helloWorld")
+@Named(value = "userCtrl")
 @RequestScoped
-public class HelloWorldController implements Serializable
+public class UserCtrl implements Serializable
 {
 
-    //properties
-    private String name;
+    @Inject
+    private User user;
 
     /**
      * default empty constructor
      */
-    public HelloWorldController()
+    public UserCtrl()
     {
+    	System.out.println("userctrl");
     }
 
     /**
      * Method that is backed to a submit button of a form.
      */
-    public String send()
+    public String afficheLogin()
     {
         //do real logic, return a string which will be used for the navigation system of JSF
-        return "page2.xhtml";
+        return "login.xhtml";
     }
+    
+    public void verifLogin()
+    {
+        //do real logic, return a string which will be used for the navigation system of JSF
+        //return "bienvenue.xhtml";
+    	FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage("Welcome " + user.getLogin() + " " + user.getMdp()));
+    	//return "login.xhtml";
+    }
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 
     //-------------------getter & setter
 
-    public String getName()
-    {
-        return name;
-    }
-
-    public void setName(String name)
-    {
-        this.name = name;
-    }
+   
+    
 
 }
